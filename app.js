@@ -1,23 +1,14 @@
 const _ = require('lodash')
-const characters = require('./characters.js')
-const quotes = characters.charsAndQuotes
-const rick = quotes.rick
-const beth = quotes.beth
-const morty = quotes.morty
+const fs = require('fs')
+const json = JSON.parse(fs.readFileSync('./characters.json', 'utf-8'))
 
-/// could set a variable of the character array length, and the math rand
 
-function quote(quoteArray) {
-  return _.sample(quoteArray)
+/// could set a variable of the character array length, and the math rand to get rid of lodash
+
+function quote(character) {
+  return _.sample(json[character])
 }
-//console.log(quote(rick))
 
-//console.log(objArray)
+// console.log(quote('beth'))
 
-module.exports = {
-  quote,
-  characters,
-  rick,
-  beth,
-  morty
-}
+module.exports = quote
